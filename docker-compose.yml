@@ -1,0 +1,68 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: akaunting-app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=akaunting
+      - DB_USERNAME=akaunting
+      - DB_PASSWORD=akaunting_secret
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - akaunting-network
+
+  db:
+    image: mysql:8.0
+    container_name: akaunting-db
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: akaunting
+      MYSQL_USER: akaunting
+      MYSQL_PASSWORD: akaunting_secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    volumes:
+      - akaunting-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - akaunting-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: akaunting-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_secret
+    depends_on:
+      - db
+    networks:
+      - akaunting-network
+
+volumes:
+  akaunting-db-data:
+
+networks:
+  akaunting-network:
+    driver: bridge
