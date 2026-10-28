@@ -25,7 +25,8 @@ function removeURLParameter(param) {
     window.history.replaceState({}, document.title, url);
 }
 
-const { evaluate } = require('mathjs');
+// Use the library's browser distribution instead of bundling its Node module graph.
+const { evaluate } = require('mathjs/lib/browser/math.js');
 
 // use the evaluate function to evaluate the expression
 function calculationToQuantity(quantity) {

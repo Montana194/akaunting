@@ -312,7 +312,7 @@ class Company extends Eloquent implements Ownable
                 $value = $setting->getAttribute('value');
 
                 if (($key == 'logo') && empty($value)) {
-                    $value = 'public/img/company.png';
+                    $value = 'img/company.png';
                 }
 
                 $this->setAttribute($key, $value);
@@ -320,7 +320,7 @@ class Company extends Eloquent implements Ownable
 
             // Set default default company logo if empty
             if ($this->getAttribute('logo') == '') {
-                $this->setAttribute('logo', 'public/img/company.png');
+                $this->setAttribute('logo', 'img/company.png');
             }
 
             // Set default default company currency if empty

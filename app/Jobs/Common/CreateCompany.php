@@ -75,7 +75,7 @@ class CreateCompany extends Job implements HasOwner, HasSource, ShouldCreate
         ]);
 
         if (!$user = user()) {
-            report(new \UnexpectedValueException('CreateCompany: user() returned null — user:seed and company attachment skipped for company ID ' . $this->model->id));
+            // Installation and console seeds create the company before its first user.
             return;
         }
 

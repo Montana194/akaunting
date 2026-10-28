@@ -4,7 +4,7 @@ import config from './../../../../public/money.json';
 export default class Currency {
     constructor(currency) {
         this.currencies = {};
-        this.currency = (typeof currency == String) ? currency.trim().toUpperCase() : 'USD';
+        this.currency = (typeof currency === 'string') ? currency.trim().toUpperCase() : 'USD';
         this.currencies = this.getCurrencies();
        
         if (! Object.keys(this.currencies).includes(this.currency)) {
@@ -34,7 +34,7 @@ export default class Currency {
 
     getConfig() {
         return new Promise(function (resolve, reject) {
-            axios.get('public/money.json')
+            axios.get('money.json')
             .then(
                 (response) => {
                     let result = response.data;

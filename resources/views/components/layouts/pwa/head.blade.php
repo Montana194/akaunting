@@ -31,6 +31,8 @@
 
 <script type="text/javascript">
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("{{ asset('serviceworker.js') }}");
+        navigator.serviceWorker.register("{{ asset('serviceworker.js') }}").catch(function (error) {
+            console.warn('Offline support is unavailable:', error.message);
+        });
     }
 </script>

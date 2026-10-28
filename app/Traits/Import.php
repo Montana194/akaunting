@@ -525,10 +525,10 @@ trait Import
 
         $module = module($group);
 
-        $sample_file = url('public/files/import/' . $type . '.xlsx');
+        $sample_file = url('files/import/' . $type . '.xlsx');
 
         if ($module instanceof Module) {
-            $sample_file = url('modules/' . $module->getStudlyName() . '/Resources/assets/' . $type . '.xlsx');
+            $sample_file = url('modules/' . $module->getLowerName() . '/' . $type . '.xlsx');
         }
 
         return $sample_file;

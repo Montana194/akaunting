@@ -258,7 +258,7 @@ class Menu extends Presenter
         } elseif (! empty($item->properties['url'])) {
             $url_paths = explode('/', $item->properties['url']);
 
-            $module_alias = count($url_paths) >= 1 ? $url_paths[1] : $url_paths[0];
+            $module_alias = count($url_paths) > 1 ? $url_paths[1] : $url_paths[0];
         } elseif (! empty($item->childs[0])) {
             $route = $item->childs[0]->route[0];
 
@@ -272,7 +272,7 @@ class Menu extends Presenter
         $path = base_path($base_path . $slug . '.svg');
 
         if (! file_exists($path)) {
-            $path = 'public/img/akaunting-logo-purple.svg';
+            $path = public_path('img/akaunting-logo-purple.svg');
         }
 
         return $path;

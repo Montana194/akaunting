@@ -215,13 +215,13 @@ class EmptyPage extends Component
             return asset($this->imageEmptyPage);
         }
 
-        $path = 'public/img/empty_pages/' . $page . '.png';
+        $path = 'img/empty_pages/' . $page . '.png';
 
         if ($this->alias != 'core') {
-            $path = 'modules/' . Str::studly($this->alias) . '/Resources/assets/img/empty-' . $page . '.png';
+            $path = 'modules/' . Str::kebab($this->alias) . '/img/empty-' . $page . '.png';
 
-            if (! file_exists($path)) {
-                $path = 'public/img/empty_pages/default.png';
+            if (! file_exists(public_path($path))) {
+                $path = 'img/empty_pages/default.png';
             }
         }
 

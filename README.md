@@ -35,6 +35,16 @@ php artisan install --db-name="akaunting" --db-username="root" --db-password="pa
 
 * Create sample data (optional): `php artisan sample-data:seed`
 
+### Local Docker setup
+
+Run `docker compose up -d` and open http://127.0.0.1:8002. phpMyAdmin is available at http://127.0.0.1:8080.
+Module assets are published and writable cache directories are prepared when the app container starts.
+PHP dependencies are copied into a Docker volume for faster requests on Windows. The copy refreshes when `composer.lock` changes.
+After editing dependencies directly, remove `vendor/.source-lock` inside the app container and restart it to refresh the copy.
+
+On computers with limited memory, use `npm run dev:small` to rebuild frontend assets in small batches.
+Run `node --test tests/Frontend/*.test.cjs` for the currency, money-formatting, and quantity-expression checks.
+
 ## Contributing
 
 Please, be very clear on your commit messages and Pull Requests, empty Pull Request messages may be rejected without reason.

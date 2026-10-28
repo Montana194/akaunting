@@ -2,9 +2,8 @@ import Currency from './currency';
 
 export default class Money {
     constructor(currency, amount, format) {
-        this.currency = new Currency(currency);
+        this.currency = currency instanceof Currency ? currency : new Currency(currency);
         this.amount = amount;
-        this.format = format;
 
         this.mutable = false;
     }
@@ -36,12 +35,11 @@ export default class Money {
     }
 
     getValue() {
-        return this.round(this.amount / this.currency.getSubunit);
+        // Document forms and exchange rates use amounts in major currency units.
+        return this.round(this.amount);
     }
 
     getAmount(rounded = false) {
-        return this.amount;
-
         return rounded ? this.getRoundedAmount() : this.amount;
     }
 

@@ -69324,6 +69324,11 @@ html[dir="rtl"] .el-select-dropdown.is-multiple .el-select-dropdown__item.select
     padding-right: 1.5rem;
   }
 
+  .lg\:px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .lg\:py-0{
     padding-top: 0px;
     padding-bottom: 0px;

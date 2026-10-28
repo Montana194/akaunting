@@ -5,7 +5,7 @@
 
     <x-slot name="content">
         <div>
-            <img src="{{ asset('public/img/akaunting-logo-green.svg') }}" class="w-16" alt="Akaunting" />
+            <img src="{{ asset('img/akaunting-logo-green.svg') }}" class="w-16" alt="Akaunting" />
 
             <h1 class="text-lg my-3">
                 {{ trans('auth.login_to') }}
@@ -25,13 +25,14 @@
         ></div>
 
         <x-form id="auth" route="login">
-            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5 lg:h-64">
+            <div class="grid sm:grid-cols-6 gap-x-8 gap-y-6 my-3.5">
                 <x-form.group.email
                     name="email"
                     label="{{ trans('general.email') }}"
                     placeholder="{{ trans('general.email') }}"
                     form-group-class="sm:col-span-6"
                     input-group-class="input-group-alternative"
+                    autocomplete="username"
                 />
 
                 <x-form.group.password
@@ -40,6 +41,7 @@
                     placeholder="{{ trans('auth.password.pass') }}"
                     form-group-class="sm:col-span-6"
                     input-group-class="input-group-alternative"
+                    autocomplete="current-password"
                 />
 
                 <div class="sm:col-span-6 flex flex-row justify-between items-center">

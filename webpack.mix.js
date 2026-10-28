@@ -17,6 +17,7 @@ require('laravel-mix-tailwind');
 mix
     .setPublicPath('public/')
     .webpackConfig({
+        parallelism: 2,
         module: {
             rules: [{
                 test: /element-ui[\\/]lib[\\/](element-ui\.common|loading)\.js$/,
@@ -24,7 +25,7 @@ mix
             }],
         },
         output: {
-            publicPath: 'public/js/',
+            publicPath: '/js/',
             filename: '[name].js',
             chunkFilename: '[name].js',
         },
@@ -84,6 +85,16 @@ mix
         require('tailwindcss')
     ])
     .tailwind('./tailwind.config.js')
+
+    // Compile selected entries on machines with limited memory.
+    if (process.env.MIX_ONLY) {
+        const entries = process.env.MIX_ONLY.split(',');
+        mix.override(config => {
+            config.entry = Object.fromEntries(Object.entries(config.entry).filter(([name]) =>
+                entries.some(entry => name.endsWith(entry))
+            ));
+        });
+    }
 
     if (mix.inProduction()) {
         mix.version()

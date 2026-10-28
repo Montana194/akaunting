@@ -75,6 +75,7 @@ fabric.properties
 /public/storage
 /public/js
 /public/mix-manifest.json
+/public/modules
 /storage/*.key
 /vendor
 /.idea

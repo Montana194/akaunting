@@ -14,8 +14,8 @@
 
         @stack('body_start')
 
-        <div id="app" class="h-screen lg:h-auto bg-no-repeat bg-cover bg-center" style="background-image: url({{ asset('public/img/auth/login-bg.png') }});">
-            <div class="relative w-full lg:max-w-7xl flex items-center m-auto">
+        <div id="app" class="auth-page">
+            <div class="auth-shell">
                 <x-layouts.auth.slider>
                     {!! $slider ?? '' !!}
                 </x-layouts.auth.slider>

@@ -200,6 +200,7 @@
         data() {
             return {
                 active: 0,
+                component: null,
                 logo: [],
                 real_date: "",
                 lang_data: '',

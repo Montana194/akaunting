@@ -16,6 +16,9 @@ return [
 
     'enabled' => env('DEBUGBAR_ENABLED', env('APP_DEBUG', false)),
     'except' => [
+        'install',
+        'install/*',
+        'auth/*',
         'telescope*',
         'horizon*',
         'mcp',

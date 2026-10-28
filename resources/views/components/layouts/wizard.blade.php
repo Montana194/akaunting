@@ -6,7 +6,7 @@
         </x-slot>
     </x-layouts.wizard.head>
 
-    <body class="h-screen flex justify-center items-center">
+    <body class="wizard-page">
         @stack('body_start')
 
         <x-layouts.wizard.background />
